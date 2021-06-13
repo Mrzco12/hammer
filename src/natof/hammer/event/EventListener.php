@@ -3,8 +3,6 @@
 namespace natof\hammer\event;
 
 use natof\hammer\hammer;
-use pocketmine\block\Block;
-use pocketmine\entity\Effect;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -23,10 +21,13 @@ class EventListener implements Listener{
         $pickaxe = Item::get(Item::DIAMOND_PICKAXE);
         if(!$event->isCancelled()) {
             foreach ($config->get("add") as $name => $id) {
-                if ($item->getId() . ":" . $item->getDamage() === $id) {
+                $id = explode(":", $id);
+                if ($item->getId() == $id[0]) {
+                    if($item->getId() == $pickaxe->getId()){
+                        $pickaxe = Item::get(Item::GOLDEN_PICKAXE);
+                    }
                     $block = $event->getBlock();
                     $player = $event->getPlayer();
-                    $side = $block->getAllSides();
                     if ($this->face == 0 || $this->face == 1){
                         $x = $block->getX();
                         $y = $block->getY();
