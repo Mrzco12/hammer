@@ -1,0 +1,9 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/natof/hammer
+build-by-default: true
+branches:
+- main
+projects:
+  hammer:
+    path: "" 
+    icon: icon.png
+...
