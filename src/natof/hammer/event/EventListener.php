@@ -16,7 +16,7 @@ class EventListener implements Listener{
 
 
     public function onBreak(BlockBreakEvent $event){
-        $config = new Config(hammer::getInstance()->getDataFolder() . "config.yml", 2);
+        $config = hammer::$config;
         $item = $event->getItem();
         $pickaxe = Item::get(Item::DIAMOND_PICKAXE);
         if(!$event->isCancelled()) {
